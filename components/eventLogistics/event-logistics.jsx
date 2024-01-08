@@ -1,19 +1,17 @@
 import React from "react";
 import AddressIcon from "../icons/address-icon";
 import DateIcon from "../icons/date-icon";
-import LogisticsItem from "./logistics-item";
 import styles from "./event-logistics.module.css";
+import LogisticsItem from "../logisticsItem/logistics-item";
 
-export default function EventLogistics(props) {
-  const { date, address, image, imageAlt } = props;
-
+export default function EventLogistics({ date, address, image, imageAlt }) {
   const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
   });
   const addressText = address.replace(", ", "\n");
-
+  
   return (
     <section className={styles.logistics}>
       <div className={styles.image}>
