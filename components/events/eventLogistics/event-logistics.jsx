@@ -1,6 +1,6 @@
 import React from "react";
-import AddressIcon from "../icons/address-icon";
-import DateIcon from "../icons/date-icon";
+import AddressIcon from "../../icons/address-icon";
+import DateIcon from "../../icons/date-icon";
 import styles from "./event-logistics.module.css";
 import LogisticsItem from "../logisticsItem/logistics-item";
 
@@ -11,7 +11,7 @@ export default function EventLogistics({ date, address, image, imageAlt }) {
     year: "numeric",
   });
   const addressText = address.replace(", ", "\n");
-  
+
   return (
     <section className={styles.logistics}>
       <div className={styles.image}>
