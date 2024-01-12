@@ -4,11 +4,18 @@ import EventSummary from "@/components/events/eventSummary/event-summary";
 import { getFeaturedEvents, getEventById } from "@/helpers/api-util";
 import React from "react";
 
-export default function EventDetailsPage({ event }) {
+export default function EventDetailsPage({ event, hasError }) {
+  if (hasError) {
+    return (
+      <div className="center">
+        <h1>You requested invalid page</h1>
+      </div>
+    );
+  }
   if (!event) {
     return (
       <div className="center">
-        <p>Loading...</p>
+        <h1>Loading...</h1>
       </div>
     );
   }
@@ -36,6 +43,11 @@ export default function EventDetailsPage({ event }) {
 export async function getStaticProps(context) {
   const eventId = context.params.eventDetails;
   const event = await getEventById(eventId);
+  if (!event) {
+    return {
+      props: { hasError: true },
+    };
+  }
   return {
     props: { event },
     revalidate: 30,
