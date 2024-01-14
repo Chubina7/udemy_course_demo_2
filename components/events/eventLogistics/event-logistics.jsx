@@ -16,7 +16,13 @@ export default function EventLogistics({ date, address, image, imageAlt }) {
   return (
     <section className={styles.logistics}>
       <div className={styles.image}>
-        <Image src={`/${image}`} alt={imageAlt} width={600} height={600} />
+        <Image
+          src={`/${image}`}
+          alt={imageAlt}
+          width={600}
+          height={600}
+          priority
+        />
       </div>
       <ul className={styles.list}>
         <LogisticsItem icon={DateIcon}>
