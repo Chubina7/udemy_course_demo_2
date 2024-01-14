@@ -6,6 +6,8 @@ import { getFilteredEvents } from "@/helpers/api-util";
 import React from "react";
 
 export default function FilteredEventsPage({ hasError, events, dateProp }) {
+  const date = new Date(dateProp.year, dateProp.month - 1);
+  
   if (hasError) {
     return (
       <>
@@ -38,7 +40,6 @@ export default function FilteredEventsPage({ hasError, events, dateProp }) {
     );
   }
 
-  const date = new Date(dateProp.year, dateProp.month - 1);
 
   return (
     <div>
@@ -49,7 +50,6 @@ export default function FilteredEventsPage({ hasError, events, dateProp }) {
 }
 
 // Get static props
-
 export async function getServerSideProps(context) {
   const { params } = context;
   const filterData = params.slug;
