@@ -2,6 +2,7 @@ import EventContent from "@/components/events/eventContent/event-content";
 import EventLogistics from "@/components/events/eventLogistics/event-logistics";
 import EventSummary from "@/components/events/eventSummary/event-summary";
 import { getFeaturedEvents, getEventById } from "@/helpers/api-util";
+import Head from "next/head";
 import React from "react";
 
 export default function EventDetailsPage({ event, hasError }) {
@@ -24,6 +25,10 @@ export default function EventDetailsPage({ event, hasError }) {
     <>
       {event && (
         <>
+          <Head>
+            <title>{event.title}</title>
+            <meta name="description" content={event.description} />
+          </Head>
           <EventSummary title={event.title} />
           <EventLogistics
             date={event.date}

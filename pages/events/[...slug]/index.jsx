@@ -3,14 +3,26 @@ import ResultsTitle from "@/components/events/result/results-title";
 import Button from "@/components/ui/button/Button";
 import ErrorAlert from "@/components/ui/errorAlert/error-alert";
 import { getFilteredEvents } from "@/helpers/api-util";
+import Head from "next/head";
 import React from "react";
 
 export default function FilteredEventsPage({ hasError, events, dateProp }) {
+  const pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta
+        name="descritpion"
+        content={`All events for ${dateProp.month} / ${dateProp.year}`}
+      />
+    </Head>
+  );
+
   const date = new Date(dateProp.year, dateProp.month - 1);
-  
+
   if (hasError) {
     return (
       <>
+        {pageHeadData}
         <ErrorAlert>
           <p className="center">Inavlid fillter. Please adjust correct ones!</p>
         </ErrorAlert>
@@ -24,12 +36,18 @@ export default function FilteredEventsPage({ hasError, events, dateProp }) {
   const filteredEvents = events;
 
   if (!filteredEvents) {
-    return <h1 className="center">Loading...</h1>;
+    return (
+      <>
+        {pageHeadData}
+        <h1 className="center">Loading...</h1>;
+      </>
+    );
   }
 
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <>
+        {pageHeadData}
         <ErrorAlert>
           <p className="center">No events found! Check another date</p>
         </ErrorAlert>
@@ -40,9 +58,9 @@ export default function FilteredEventsPage({ hasError, events, dateProp }) {
     );
   }
 
-
   return (
     <div>
+      {pageHeadData}
       <ResultsTitle date={date} />
       <EventList items={events} />
     </div>
