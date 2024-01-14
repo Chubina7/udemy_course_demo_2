@@ -4,6 +4,7 @@ import Button from "@/components/ui/button/Button";
 import DateIcon from "@/components/icons/date-icon";
 import AddressIcon from "@/components/icons/address-icon";
 import ArrowRightIcon from "@/components/icons/arrow-right-icon";
+import Image from "next/image";
 
 export default function EventItem({ title, image, date, location, id }) {
   const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
@@ -16,7 +17,8 @@ export default function EventItem({ title, image, date, location, id }) {
 
   return (
     <li className={styles.item}>
-      <img src={"/" + image} alt={title} />
+      {/* <img src={"/" + image} alt={title} /> */}
+      <Image src={"/" + image} alt={title} width={350} height={160} />
       <div className={styles.content}>
         <div className={styles.summary}>
           <h2>{title}</h2>
